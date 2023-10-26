@@ -1,9 +1,8 @@
+package com.coffeeshop.model.domain;
 /**
  * Name: William Sung
  * Description: Food class extended from item.
  */
-package com.coffeeshop.model.domain;
-
 public class Food extends Item {
     public Food() {
         super();

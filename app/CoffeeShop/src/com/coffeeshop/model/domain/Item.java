@@ -1,11 +1,11 @@
-/**
- * Name: William Sung
- * Description: Abstract class to be extended for items
- */
 package com.coffeeshop.model.domain;
 
 import java.util.Objects;
 
+/**
+ * Name: William Sung
+ * Description: Abstract class to be extended for items
+ */
 public abstract class Item {
     protected String type;
     protected String name;
@@ -120,6 +120,68 @@ public abstract class Item {
     }
 
     /**
+     * Validates the inputs as not null or not blank, then checks the date for correct formatting (YYYY-MM-DD)
+     * @return true if all conditions pass, false otherwise
+     */
+    public Boolean validate() {
+        if (this.type == null || this.name == null || this.location == null || this.quantity == -1 ||
+                this.expiryDate == null)
+            return false;
+
+        if (this.type.isBlank() || this.name.isBlank() || this.location.isBlank() || this.expiryDate.isBlank())
+            return false;
+
+        // try to convert string to int and catch exception for letters
+        try {
+
+            // split the string
+            String[] dateSplit = this.expiryDate.split("-");
+
+            // check for valid lengths
+            if (dateSplit[0].length() != 4 || dateSplit[1].length() != 2 ||
+                    dateSplit[2].length() != 2) {
+                return false;
+            }
+
+            // try to convert to integers
+            int month = Integer.parseInt(dateSplit[1]);
+            int day = Integer.parseInt(dateSplit[2]);
+            int year = Integer.parseInt(dateSplit[0]);
+
+
+            // Switch statement checks for leap year for feb, 31 day months,
+            // and 30 day months as well as day is greater than 1
+            switch (month) {
+                case 2 -> {
+                    if (day > (year % 4 == 0 ? 29 : 28) || day < 1) {
+                        return false;
+                    }
+                    break;
+                }
+                case 1, 3, 5, 7, 8, 10, 12 -> {
+                    if (day > 31 || day < 1) {
+                        return false;
+                    }
+                }
+                case 4, 6, 9, 11 -> {
+                    if (day > 30 || day < 1) {
+                        return false;
+                    }
+                }
+
+                default -> {
+                    return false;
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Overridden equals method. Checks for nulls and values to be equal
      * @param o value to compare to this object
      * @return false if values are nulls or not equal, true otherwise
@@ -135,13 +197,13 @@ public abstract class Item {
 
         if ((other.quantity == -1) || (this.quantity == -1) || (this.quantity != item.quantity))
             return false;
-        if ((other.type == null) || (this.type == null) || !type.equals(item.type))
+        if ((other.type == null) || (this.type == null) || !this.type.equals(item.type))
             return false;
-        if ((other.name == null) || (this.name == null) || !name.equals(item.name))
+        if ((other.name == null) || (this.name == null) || !this.name.equals(item.name))
             return false;
-        if ((other.location == null) || (this.location == null) || !location.equals(item.location))
+        if ((other.location == null) || (this.location == null) || !this.location.equals(item.location))
             return false;
-        if ((other.expiryDate == null) || (this.expiryDate == null) || expiryDate.equals(item.expiryDate))
+        if ((other.expiryDate == null) || (this.expiryDate == null) || !this.expiryDate.equals(item.expiryDate))
             return false;
         return true;
     }

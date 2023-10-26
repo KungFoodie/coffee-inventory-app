@@ -1,9 +1,8 @@
+package com.coffeeshop.model.domain;
 /**
  * Name: William Sung
  * Description: Coffee class extended from item.
  */
-package com.coffeeshop.model.domain;
-
 public class Coffee extends Item {
 
     public Coffee() {

@@ -10,14 +10,16 @@ public abstract class Item {
     protected String expiryDate;
 
     public Item() {
-        this.name = "";
-        this.quantity = 0;
-        this.location = "";
-        this.expiryDate = "";
+        this.type = null;
+        this.name = null;
+        this.quantity = -1;
+        this.location = null;
+        this.expiryDate = null;
 
     }
 
     public Item(String name, int quantity, String location, String expiryDate) {
+        this.type = null;
         this.name = name;
         this.quantity = quantity;
         this.location = location;
@@ -29,10 +31,12 @@ public abstract class Item {
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
@@ -41,18 +45,22 @@ public abstract class Item {
     }
 
     public void setQuantity(int quantity) {
+
         this.quantity = quantity;
     }
 
     public String getLocation() {
+
         return location;
     }
 
     public void setLocation(String location) {
+
         this.location = location;
     }
 
     public String getExpiryDate() {
+
         return expiryDate;
     }
 
@@ -62,10 +70,24 @@ public abstract class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Item item)) return false;
-        return quantity == item.quantity && Objects.equals(type, item.type) && Objects.equals(name, item.name) &&
-                Objects.equals(location, item.location) && Objects.equals(expiryDate, item.expiryDate);
+        if (this == o)
+            return true;
+        if (!(o instanceof Item item))
+            return false;
+
+        Item other = (Item) o;
+
+        if ((other.quantity == -1) || (this.quantity == -1) || (this.quantity != item.quantity))
+            return false;
+        if ((other.type == null) || (this.type == null) || !type.equals(item.type))
+            return false;
+        if ((other.name == null) || (this.name == null) || !name.equals(item.name))
+            return false;
+        if ((other.location == null) || (this.location == null) || !location.equals(item.location))
+            return false;
+        if ((other.expiryDate == null) || (this.expiryDate == null) || expiryDate.equals(item.expiryDate))
+            return false;
+        return true;
     }
 
     @Override

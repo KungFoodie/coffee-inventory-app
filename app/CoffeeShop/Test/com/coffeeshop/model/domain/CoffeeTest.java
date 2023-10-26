@@ -1,46 +1,80 @@
 package com.coffeeshop.model.domain;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Name: William Sung
+ * Description: Test class for coffee class
+ */
 class CoffeeTest {
 
+    /**
+     * Test cases for validate method
+     */
     @Test
     public void testValidate() {
 
         Coffee beans = new Coffee();
+
+        // default all null
         assertFalse(beans.validate());
 
-        beans.name = "Java";
+        // blank string
+        beans.setName("");
         assertFalse(beans.validate());
 
-        beans.location = "3A";
+        beans.setLocation("");
         assertFalse(beans.validate());
 
-        beans.quantity = 1;
+        beans.setExpiryDate("");
         assertFalse(beans.validate());
 
-        beans.expiryDate = "2222-22-22";
+        // negative quantity
+        beans.setQuantity(-10);
         assertFalse(beans.validate());
 
-        beans.expiryDate = "222-10-22";
+        // populate one field until complete
+        beans.setName("Java");
         assertFalse(beans.validate());
 
-        beans.expiryDate = "2024-10-51";
+        beans.setLocation("3A");
         assertFalse(beans.validate());
 
-        beans.expiryDate = "2023-02-29";
+        beans.setQuantity(1);
         assertFalse(beans.validate());
 
-        beans.expiryDate = "2024-10-22";
+        // all valid except date, perform date cases
+
+        // invalid year format
+        beans.setExpiryDate("222-10-22");
+        assertFalse(beans.validate());
+
+        // invalid month
+        beans.setExpiryDate("2222-22-22");
+        assertFalse(beans.validate());
+
+        //invalid day
+        beans.setExpiryDate("222-10-51");
+        assertFalse(beans.validate());
+
+        // invalid leap year
+        beans.setExpiryDate("2023-02-29");
+        assertFalse(beans.validate());
+
+        // valid date
+        beans.setExpiryDate("2024-10-22");
         assertTrue(beans.validate());
 
-        beans.expiryDate = "2024-02-29";
+        // valid leap year date
+        beans.setExpiryDate("2024-02-29");
         assertTrue(beans.validate());
 
     }
 
+    /**
+     * Test cases for equals method
+     */
     @Test
     public void testEquals () {
 

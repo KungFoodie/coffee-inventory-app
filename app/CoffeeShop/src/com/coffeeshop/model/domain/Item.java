@@ -8,10 +8,10 @@ import java.util.Objects;
  */
 public abstract class Item {
     protected String type;
-    protected String name;
-    protected int quantity;
-    protected String location;
-    protected String expiryDate;
+    private String name;
+    private int quantity;
+    private String location;
+    private String expiryDate;
 
     /**
      * Default constructor. Assigns all Strings to null and integers to -1
@@ -120,16 +120,18 @@ public abstract class Item {
     }
 
     /**
-     * Validates the inputs as not null or not blank, then checks the date for correct formatting (YYYY-MM-DD)
+     * Validates the inputs as not null or not blank, then checks for valid date and formatting (YYYY-MM-DD)
      * @return true if all conditions pass, false otherwise
      */
     public Boolean validate() {
-        if (this.type == null || this.name == null || this.location == null || this.quantity == -1 ||
+        if (this.type == null || this.name == null || this.location == null || this.quantity < 0 ||
                 this.expiryDate == null)
             return false;
 
+
         if (this.type.isBlank() || this.name.isBlank() || this.location.isBlank() || this.expiryDate.isBlank())
             return false;
+
 
         // try to convert string to int and catch exception for letters
         try {
@@ -195,15 +197,8 @@ public abstract class Item {
 
         Item other = (Item) o;
 
-        if ((other.quantity == -1) || (this.quantity == -1) || (this.quantity != item.quantity))
-            return false;
-        if ((other.type == null) || (this.type == null) || !this.type.equals(item.type))
-            return false;
-        if ((other.name == null) || (this.name == null) || !this.name.equals(item.name))
-            return false;
-        if ((other.location == null) || (this.location == null) || !this.location.equals(item.location))
-            return false;
-        if ((other.expiryDate == null) || (this.expiryDate == null) || !this.expiryDate.equals(item.expiryDate))
+        if (this.quantity != item.quantity|| !this.type.equals(item.type) || !this.name.equals(item.name) ||
+                !this.location.equals(item.location)|| !this.expiryDate.equals(item.expiryDate))
             return false;
         return true;
     }

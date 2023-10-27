@@ -114,7 +114,7 @@ public class ItemDao implements Dao {
     }
 
     /**
-     * Updates an row in the database table inventory
+     * Updates a row in the database table inventory
      *
      * @param item item to be used to update
      * @return true on success, false on failure
@@ -135,7 +135,6 @@ public class ItemDao implements Dao {
                     append(newItem.getId()).append("';").toString();
             String sql = sqlCommand + params;
 
-            System.out.println(sql);
             // execute command
             statement.executeUpdate(sql);
 

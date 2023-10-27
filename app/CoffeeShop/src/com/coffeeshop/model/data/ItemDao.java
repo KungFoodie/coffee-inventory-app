@@ -1,4 +1,4 @@
-package com.coffeeshop.model.persistence;
+package com.coffeeshop.model.data;
 
 import com.coffeeshop.model.domain.*;
 import java.sql.*;
@@ -45,30 +45,29 @@ public class ItemDao implements Dao {
 
             // Iterate through all rows and print the values from each
             while (this.result.next()) {
-                // Check if cat or dog and adds to list
-                switch (this.result.getString(1).toLowerCase()) {
+                switch (this.result.getString(2).toLowerCase()) {
                     case "food":
-                        Food f = new Food(result.getInt(0),
-                                result.getString(2),
-                                result.getInt(3),
-                                result.getString(4),
-                                result.getString(5));
+                        Food f = new Food(result.getInt(1),
+                                result.getString(3),
+                                result.getInt(4),
+                                result.getString(5),
+                                result.getString(6));
                         items.add(f);
                         break;
                     case "coffee":
-                        Coffee c = new Coffee(result.getInt(0),
-                                result.getString(2),
-                                result.getInt(3),
-                                result.getString(4),
-                                result.getString(5));
+                        Coffee c = new Coffee(result.getInt(1),
+                                result.getString(3),
+                                result.getInt(4),
+                                result.getString(5),
+                                result.getString(6));
                         items.add(c);
                         break;
                     case "syrup":
-                        Syrup s = new Syrup(result.getInt(0),
-                                result.getString(2),
-                                result.getInt(3),
-                                result.getString(4),
-                                result.getString(5));
+                        Syrup s = new Syrup(result.getInt(1),
+                                result.getString(3),
+                                result.getInt(4),
+                                result.getString(5),
+                                result.getString(6));
                         items.add(s);
                         break;
                 }

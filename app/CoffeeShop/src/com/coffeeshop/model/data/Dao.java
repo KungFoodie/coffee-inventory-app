@@ -1,4 +1,4 @@
-package com.coffeeshop.model.persistence;
+package com.coffeeshop.model.data;
 import java.util.*;
 
 /**

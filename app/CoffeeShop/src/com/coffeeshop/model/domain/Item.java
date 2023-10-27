@@ -214,12 +214,13 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", location='" + location + '\'' +
-                ", expiryDate='" + expiryDate + '\'' +
-                '}';
+        return "Item{" + "\n" +
+                "id='" + id + '\'' + "\n" +
+                "type='" + type + '\'' + "\n" +
+                "name='" + name + '\'' + "\n" +
+                "quantity=" + quantity + "\n" +
+                "location='" + location + '\'' + "\n" +
+                "expiryDate='" + expiryDate + '\'' + "\n" +
+                '}' + "\n";
     }
 }

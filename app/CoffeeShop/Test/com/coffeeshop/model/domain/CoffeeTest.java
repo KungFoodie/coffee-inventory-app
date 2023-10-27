@@ -84,13 +84,13 @@ class CoffeeTest {
         assertFalse(bean1.equals(chocolate));
         assertTrue(bean1.equals(bean1));
 
-        bean1 = new Coffee("Java", 1, "3A", "2024-10-22");
-        chocolate = new Food("Chocolate", 1, "3A", "2024-10-22");
+        bean1 = new Coffee(1, "Java", 1, "3A", "2024-10-22");
+        chocolate = new Food(2, "Chocolate", 1, "3A", "2024-10-22");
 
         assertFalse(bean1.equals(chocolate));
         assertTrue(bean1.equals(bean1));
 
-        Coffee bean2 = new Coffee("Salted Caramel", 1, "3A", "2024-10-22");
+        Coffee bean2 = new Coffee(1, "Salted Caramel", 1, "3A", "2024-10-22");
         assertFalse(bean1.equals(bean2));
 
         bean2.setName(null);

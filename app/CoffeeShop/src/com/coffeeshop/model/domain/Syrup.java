@@ -19,8 +19,8 @@ public class Syrup extends Item {
      * @param location value to copy
      * @param expiryDate value to copy
      */
-    public Syrup(String name, int quantity, String location, String expiryDate) {
-        super(name, quantity, location, expiryDate);
+    public Syrup(int id, String name, int quantity, String location, String expiryDate) {
+        super(id, name, quantity, location, expiryDate);
         this.type = "Syrup";
     }
 }

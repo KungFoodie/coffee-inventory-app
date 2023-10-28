@@ -1,7 +1,7 @@
 package com.coffeeshop.model.domain;
 
 /**
- * Composite object that holds the inventory information such as items
+ * Composite object that holds the inventory information
  *
  */
 public class Composite {

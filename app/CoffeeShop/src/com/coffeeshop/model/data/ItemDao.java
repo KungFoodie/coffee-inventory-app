@@ -50,24 +50,27 @@ public class ItemDao implements Dao {
                         Food f = new Food(result.getInt(1),
                                 result.getString(3),
                                 result.getInt(4),
-                                result.getString(5),
-                                result.getString(6));
+                                result.getInt(5),
+                                result.getString(6),
+                                result.getString(7));
                         items.add(f);
                         break;
                     case "coffee":
                         Coffee c = new Coffee(result.getInt(1),
                                 result.getString(3),
                                 result.getInt(4),
-                                result.getString(5),
-                                result.getString(6));
+                                result.getInt(5),
+                                result.getString(6),
+                                result.getString(7));
                         items.add(c);
                         break;
                     case "syrup":
                         Syrup s = new Syrup(result.getInt(1),
                                 result.getString(3),
                                 result.getInt(4),
-                                result.getString(5),
-                                result.getString(6));
+                                result.getInt(5),
+                                result.getString(6),
+                                result.getString(7));
                         items.add(s);
                         break;
                 }
@@ -94,11 +97,11 @@ public class ItemDao implements Dao {
 
             // build sql command
             String sqlCommand = "insert into inventory (inventoryid, type, "
-                    + "name, quantity, location, expiry) values ";
+                    + "name, quantity, location, expiry, storage) values ";
             String params = new StringBuilder().append("(null, '").append(newItem.getType()).append("', '").
                     append(newItem.getName()).append("', '").
                     append(newItem.getQuantity()).append("', '").append(newItem.getLocation()).append("', '").
-                    append(newItem.getExpiryDate()).append("');").toString();
+                    append(newItem.getExpiryDate()).append("', '").append(newItem.getStorageLoc()).append("');").toString();
             String sql = sqlCommand + params;
 
             // execute command
@@ -130,7 +133,8 @@ public class ItemDao implements Dao {
             String params = new StringBuilder().append("type = '").append(newItem.getType()).append("', name = '").
                     append(newItem.getName()).append("', quantity = ").append(newItem.getQuantity()).
                     append(", location = '").append(newItem.getLocation()).append("', expiry = '").
-                    append(newItem.getExpiryDate()).append("' where inventoryid = '").
+                    append(newItem.getExpiryDate()).append("', storage = '").
+                    append(newItem.getStorageLoc()).append("' where inventoryid = '").
                     append(newItem.getId()).append("';").toString();
             String sql = sqlCommand + params;
 

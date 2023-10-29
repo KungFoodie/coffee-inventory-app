@@ -11,8 +11,9 @@ public abstract class Item {
     private int id;
     private String name;
     private int quantity;
-    private String location;
+    private int location;
     private String expiryDate;
+    private String storageLoc;
 
     /**
      * Default constructor. Assigns all Strings to null and integers to -1
@@ -22,9 +23,9 @@ public abstract class Item {
         this.type = null;
         this.name = null;
         this.quantity = -1;
-        this.location = null;
+        this.location = -1;
         this.expiryDate = null;
-
+        this.storageLoc = null;
     }
 
     /**
@@ -35,13 +36,14 @@ public abstract class Item {
      * @param location variable to copy
      * @param expiryDate variable to copy
      */
-    public Item(int id, String name, int quantity, String location, String expiryDate) {
+    public Item(int id, String name, int quantity, int location, String expiryDate, String storageLoc) {
         this.type = null;
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.location = location;
         this.expiryDate = expiryDate;
+        this.storageLoc = storageLoc;
     }
 
     /**
@@ -104,7 +106,7 @@ public abstract class Item {
      * Getter for location
      * @return location value
      */
-    public String getLocation() {
+    public int getLocation() {
         return location;
     }
 
@@ -112,7 +114,7 @@ public abstract class Item {
      * Setter for location
      * @param location value to set
      */
-    public void setLocation(String location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 
@@ -133,15 +135,31 @@ public abstract class Item {
     }
 
     /**
+     * Getter for storageLoc
+     * @return storageLoc
+     */
+    public String getStorageLoc() {
+        return storageLoc;
+    }
+
+    /**
+     * Setter for storageLoc
+     * @param storageLoc value to set
+     */
+    public void setStorageLoc(String storageLoc) {
+        this.storageLoc = storageLoc;
+    }
+
+    /**
      * Validates the inputs as not null or not blank, then checks for valid date and formatting (YYYY-MM-DD)
      * @return true if all conditions pass, false otherwise
      */
     public Boolean validate() {
-        if (this.type == null || this.name == null || this.location == null || this.quantity < 0 ||
-                this.expiryDate == null)
+        if (this.type == null || this.name == null || this.location < 0 || this.quantity < 0 ||
+                this.expiryDate == null || this.storageLoc == null)
             return false;
 
-        if (this.type.isBlank() || this.name.isBlank() || this.location.isBlank() || this.expiryDate.isBlank())
+        if (this.type.isBlank() || this.name.isBlank() || this.expiryDate.isBlank() || this.storageLoc.isBlank())
             return false;
 
         // try to convert string to int and catch exception for letters
@@ -202,7 +220,7 @@ public abstract class Item {
         Item other = (Item) o;
 
         if (this.quantity != item.quantity|| !this.type.equals(item.type) || !this.name.equals(item.name) ||
-                !this.location.equals(item.location)|| !this.expiryDate.equals(item.expiryDate))
+                this.location  != item.location|| !this.expiryDate.equals(item.expiryDate) || !this.storageLoc.equals(((Item) o).storageLoc))
             return false;
         return true;
     }
@@ -221,6 +239,7 @@ public abstract class Item {
                 "quantity=" + quantity + "\n" +
                 "location='" + location + '\'' + "\n" +
                 "expiryDate='" + expiryDate + '\'' + "\n" +
+                "storageLoc = " + storageLoc + '\'' + "\n" +
                 '}' + "\n";
     }
 }

@@ -20,8 +20,8 @@ public class Coffee extends Item {
      * @param location value to copy
      * @param expiryDate value to copy
      */
-    public Coffee(int id, String name, int quantity, String location, String expiryDate) {
-        super(id, name, quantity, location, expiryDate);
+    public Coffee(int id, String name, int quantity, int location, String expiryDate, String storageLoc) {
+        super(id, name, quantity, location, expiryDate, storageLoc);
         this.type = "Coffee";
     }
 }

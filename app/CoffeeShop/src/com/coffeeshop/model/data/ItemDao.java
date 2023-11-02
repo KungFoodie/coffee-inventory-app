@@ -100,7 +100,7 @@ public class ItemDao implements Dao {
                     + "name, quantity, location, expiry, storage) values ";
             String params = new StringBuilder().append("(null, '").append(newItem.getType()).append("', '").
                     append(newItem.getName()).append("', '").
-                    append(newItem.getQuantity()).append("', '").append(newItem.getLocation()).append("', '").
+                    append(newItem.getQuantity()).append("', '").append(newItem.getStore()).append("', '").
                     append(newItem.getExpiryDate()).append("', '").append(newItem.getStorageLoc()).append("');").toString();
             String sql = sqlCommand + params;
 
@@ -132,7 +132,7 @@ public class ItemDao implements Dao {
             String sqlCommand = "update inventory set ";
             String params = new StringBuilder().append("type = '").append(newItem.getType()).append("', name = '").
                     append(newItem.getName()).append("', quantity = ").append(newItem.getQuantity()).
-                    append(", location = '").append(newItem.getLocation()).append("', expiry = '").
+                    append(", location = '").append(newItem.getStore()).append("', expiry = '").
                     append(newItem.getExpiryDate()).append("', storage = '").
                     append(newItem.getStorageLoc()).append("' where inventoryid = '").
                     append(newItem.getId()).append("';").toString();

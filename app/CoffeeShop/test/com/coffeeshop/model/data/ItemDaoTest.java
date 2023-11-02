@@ -20,7 +20,7 @@ class ItemDaoTest {
         stock = app.getAll();
         System.out.println(stock);
 
-        stock.get(0).setLocation(1);
+        stock.get(0).setStore(1);
         app.update(stock.get(0));
         stock = app.getAll();
         System.out.println(stock);

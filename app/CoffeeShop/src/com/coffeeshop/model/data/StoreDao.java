@@ -5,10 +5,10 @@ import com.coffeeshop.model.domain.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class LocationDao implements Dao {
+public class StoreDao implements Dao {
 
 
-    private ArrayList<Location> locations;
+    private ArrayList<Store> locations;
     private Connection connection;
     private Statement statement;
     private ResultSet result;
@@ -16,8 +16,8 @@ public class LocationDao implements Dao {
     /**
      * Default Constructor. Initializes the connection to the database.
      */
-    public LocationDao() {
-        this.locations = new ArrayList<Location>();
+    public StoreDao() {
+        this.locations = new ArrayList<Store>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(
@@ -36,7 +36,7 @@ public class LocationDao implements Dao {
      * @return list of locations, null on error
      */
     @Override
-    public ArrayList<Location> getAll() {
+    public ArrayList<Store> getAll() {
 
         try {
             this.statement = connection.createStatement();
@@ -47,7 +47,7 @@ public class LocationDao implements Dao {
 
             // Iterate through all rows and print the values from each
             while (this.result.next()) {
-                Location l = new Location(result.getInt(1), result.getString(2),
+                Store l = new Store(result.getInt(1), result.getString(2),
                         result.getInt(3), result.getString(4), result.getString(5),
                         result.getInt(6), result.getString(7));
                 locations.add(l);
@@ -70,7 +70,7 @@ public class LocationDao implements Dao {
         try {
             this.statement = connection.createStatement();
 
-            Location l = (Location) item;
+            Store l = (Store) item;
 
             // build sql command
             String sqlCommand = "insert into locations (id, name, streetno, streetname, city, zip, phone) values ";
@@ -102,7 +102,7 @@ public class LocationDao implements Dao {
         try {
             this.statement = connection.createStatement();
 
-            Location l = (Location) item;
+            Store l = (Store) item;
 
             // build sql command
             String sqlCommand = "update locations set ";
@@ -134,7 +134,7 @@ public class LocationDao implements Dao {
         try {
             this.statement = connection.createStatement();
 
-            Location l = (Location) item;
+            Store l = (Store) item;
 
             // build sql command
             String sqlCommand = "delete from locations ";

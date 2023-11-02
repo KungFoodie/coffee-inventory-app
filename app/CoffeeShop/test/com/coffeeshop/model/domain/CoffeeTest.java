@@ -24,7 +24,7 @@ class CoffeeTest {
         beans.setName("");
         assertFalse(beans.validate());
 
-        beans.setLocation(-1);
+        beans.setStore(-1);
         assertFalse(beans.validate());
 
         beans.setExpiryDate("");
@@ -41,7 +41,7 @@ class CoffeeTest {
         beans.setName("Java");
         assertFalse(beans.validate());
 
-        beans.setLocation(1);
+        beans.setStore(1);
         assertFalse(beans.validate());
 
         beans.setQuantity(1);

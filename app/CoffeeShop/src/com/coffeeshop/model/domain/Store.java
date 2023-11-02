@@ -1,6 +1,6 @@
 package com.coffeeshop.model.domain;
 
-public class Location {
+public class Store {
 
     private int locationID;
     private String name;
@@ -13,7 +13,7 @@ public class Location {
     /**
      * Default Constructor
      */
-    public Location() {
+    public Store() {
         this.locationID = -1;
         this.name = null;
         this.streetName = null;
@@ -33,7 +33,7 @@ public class Location {
      * @param zip int value to copy
      * @param phone String value to copy
      */
-    public Location(int locationID, String name, int streetNo, String streetName, String city, int zip, String phone) {
+    public Store(int locationID, String name, int streetNo, String streetName, String city, int zip, String phone) {
         this.locationID = locationID;
         this.name = name;
         this.streetNo = streetNo;
@@ -190,15 +190,15 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Location location)) return false;
+        if (!(o instanceof Store store)) return false;
 
-        if (locationID != location.locationID) return false;
-        if (streetNo != location.streetNo) return false;
-        if (zip != location.zip) return false;
-        if (!name.equals(location.name)) return false;
-        if (!streetName.equals(location.streetName)) return false;
-        if (!city.equals(location.city)) return false;
-        return phone.equals(location.phone);
+        if (locationID != store.locationID) return false;
+        if (streetNo != store.streetNo) return false;
+        if (zip != store.zip) return false;
+        if (!name.equals(store.name)) return false;
+        if (!streetName.equals(store.streetName)) return false;
+        if (!city.equals(store.city)) return false;
+        return phone.equals(store.phone);
     }
 
     @Override

@@ -11,7 +11,7 @@ public abstract class Item {
     private int id;
     private String name;
     private int quantity;
-    private int location;
+    private int store;
     private String expiryDate;
     private String storageLoc;
 
@@ -23,7 +23,7 @@ public abstract class Item {
         this.type = null;
         this.name = null;
         this.quantity = -1;
-        this.location = -1;
+        this.store = -1;
         this.expiryDate = null;
         this.storageLoc = null;
     }
@@ -33,15 +33,15 @@ public abstract class Item {
      *
      * @param name variable to copy
      * @param quantity variable to copy
-     * @param location variable to copy
+     * @param store variable to copy
      * @param expiryDate variable to copy
      */
-    public Item(int id, String name, int quantity, int location, String expiryDate, String storageLoc) {
+    public Item(int id, String name, int quantity, int store, String expiryDate, String storageLoc) {
         this.type = null;
         this.id = id;
         this.name = name;
         this.quantity = quantity;
-        this.location = location;
+        this.store = store;
         this.expiryDate = expiryDate;
         this.storageLoc = storageLoc;
     }
@@ -106,16 +106,16 @@ public abstract class Item {
      * Getter for location
      * @return location value
      */
-    public int getLocation() {
-        return location;
+    public int getStore() {
+        return store;
     }
 
     /**
      * Setter for location
-     * @param location value to set
+     * @param store value to set
      */
-    public void setLocation(int location) {
-        this.location = location;
+    public void setStore(int store) {
+        this.store = store;
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class Item {
      * @return true if all conditions pass, false otherwise
      */
     public Boolean validate() {
-        if (this.type == null || this.name == null || this.location < 0 || this.quantity < 0 ||
+        if (this.type == null || this.name == null || this.store < 0 || this.quantity < 0 ||
                 this.expiryDate == null || this.storageLoc == null)
             return false;
 
@@ -220,14 +220,14 @@ public abstract class Item {
         Item other = (Item) o;
 
         if (this.quantity != item.quantity|| !this.type.equals(item.type) || !this.name.equals(item.name) ||
-                this.location  != item.location|| !this.expiryDate.equals(item.expiryDate) || !this.storageLoc.equals(((Item) o).storageLoc))
+                this.store != item.store || !this.expiryDate.equals(item.expiryDate) || !this.storageLoc.equals(((Item) o).storageLoc))
             return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, name, quantity, location, expiryDate);
+        return Objects.hash(type, name, quantity, store, expiryDate);
     }
 
     @Override
@@ -237,7 +237,7 @@ public abstract class Item {
                 "type='" + type + '\'' + "\n" +
                 "name='" + name + '\'' + "\n" +
                 "quantity=" + quantity + "\n" +
-                "location='" + location + '\'' + "\n" +
+                "location='" + store + '\'' + "\n" +
                 "expiryDate='" + expiryDate + '\'' + "\n" +
                 "storageLoc = " + storageLoc + '\'' + "\n" +
                 '}' + "\n";

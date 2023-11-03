@@ -3,10 +3,12 @@ package com.coffeeshop.model.services.orderservice;
 import com.coffeeshop.model.domain.Employee;
 import com.coffeeshop.model.domain.Item;
 import com.coffeeshop.model.domain.Order;
-
-import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Implementation of ordering interface
+ * @author William SUng
+ */
 public class OrderServiceImpl implements IOrderService {
     /**
      * Creates an order

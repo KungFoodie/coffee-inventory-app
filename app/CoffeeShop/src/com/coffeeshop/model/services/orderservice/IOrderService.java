@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Interface for placing an order.
+ * @author William Sung
  */
 public interface IOrderService {
     /**

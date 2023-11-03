@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the inventory service
+ * @author William Sung
+ */
 class InventoryServiceImplTest {
 
     @Test

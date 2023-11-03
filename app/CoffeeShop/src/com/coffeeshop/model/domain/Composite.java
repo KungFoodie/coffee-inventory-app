@@ -2,7 +2,7 @@ package com.coffeeshop.model.domain;
 
 /**
  * Composite object that holds the inventory information
- *
+ * @author William Sung
  */
 public class Composite {
 

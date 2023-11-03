@@ -1,4 +1,4 @@
-package com.coffeeshop.model.data;
+package com.coffeeshop.model.services.data;
 
 import com.coffeeshop.model.domain.*;
 
@@ -52,6 +52,7 @@ public class StoreDao implements Dao {
                         result.getInt(6), result.getString(7));
                 locations.add(l);
             }
+
             return locations;
         } catch (SQLException e) {
             System.err.println(e);
@@ -112,7 +113,6 @@ public class StoreDao implements Dao {
                     append(l.getPhone()).append("' where id = '").
                     append(l.getLocationID()).append("';").toString();
             String sql = sqlCommand + params;
-            System.out.println(sql);
             // execute command
             statement.executeUpdate(sql);
 

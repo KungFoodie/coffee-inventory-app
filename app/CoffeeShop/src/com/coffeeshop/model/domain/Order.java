@@ -2,6 +2,7 @@ package com.coffeeshop.model.domain;
 
 /**
  * This class assigns an employee to a job to make a specific item in an order
+ * @author William Sung
  */
 public class Order {
     private int id;
@@ -27,7 +28,7 @@ public class Order {
      * @param complete Value to copy
      */
     public Order(int id, Employee barista, Item itemToMake, boolean complete) {
-        this.id = -1;
+        this.id = id;
         this.barista = barista;
         this.itemToMake = itemToMake;
         this.complete = complete;
@@ -121,8 +122,8 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", emp=" + barista +
-                ", itemToMake=" + itemToMake +
+                ", emp=" + barista.getFname() +
+                ", itemToMake=" + itemToMake.getName() +
                 ", complete=" + complete +
                 '}';
     }

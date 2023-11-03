@@ -1,7 +1,7 @@
 package com.coffeeshop.model.domain;
 /**
- * Name: William Sung
  * Description: Food class extended from item.
+ * @author William Sung
  */
 public class Food extends Item {
 

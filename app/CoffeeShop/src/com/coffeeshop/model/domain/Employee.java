@@ -2,6 +2,7 @@ package com.coffeeshop.model.domain;
 
 /**
  * Class contains employee information in system.
+ * @author William Sung
  */
 public class Employee {
 

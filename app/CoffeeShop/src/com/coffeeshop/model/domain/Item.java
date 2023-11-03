@@ -3,8 +3,8 @@ package com.coffeeshop.model.domain;
 import java.util.Objects;
 
 /**
- * Name: William Sung
  * Description: Abstract class to be extended for items
+ * @author William Sung
  */
 public abstract class Item {
     protected String type;

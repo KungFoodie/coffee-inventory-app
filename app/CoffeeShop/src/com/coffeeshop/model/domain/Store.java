@@ -1,5 +1,9 @@
 package com.coffeeshop.model.domain;
 
+/**
+ * Class contains store information
+ * @author William Sung
+ */
 public class Store {
 
     private int locationID;

@@ -1,4 +1,4 @@
-package com.coffeeshop.model.data;
+package com.coffeeshop.model.services.data;
 import java.util.*;
 
 /**

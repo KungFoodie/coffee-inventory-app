@@ -1,4 +1,4 @@
-package com.coffeeshop.model.data;
+package com.coffeeshop.model.services.data;
 
 import com.coffeeshop.model.domain.*;
 import java.sql.*;

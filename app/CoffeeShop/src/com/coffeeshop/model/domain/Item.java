@@ -1,12 +1,14 @@
 package com.coffeeshop.model.domain;
 
 import java.util.Objects;
+import java.io.Serializable;
 
 /**
  * Description: Abstract class to be extended for items
  * @author William Sung
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
     protected String type;
     private int id;
     private String name;

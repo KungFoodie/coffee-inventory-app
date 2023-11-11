@@ -1,9 +1,13 @@
 package com.coffeeshop.model.domain;
+
+import java.io.Serializable;
+
 /**
  * Description: Syrup class extended from item.
  * @author William Sung
  */
-public class Syrup extends Item {
+public class Syrup extends Item implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * Default Constructor
      */

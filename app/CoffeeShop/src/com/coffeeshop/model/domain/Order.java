@@ -1,13 +1,17 @@
 package com.coffeeshop.model.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * This class assigns an employee to a job to make a specific item in an order
  * @author William Sung
  */
-public class Order {
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private Employee barista;
-    private Item itemToMake;
+    private ArrayList<Item> itemsToMake;
     private boolean complete;
 
     /**
@@ -16,7 +20,7 @@ public class Order {
     public Order () {
         this.id = -1;
         this.barista = null;
-        this.itemToMake = null;
+        this.itemsToMake = null;
         this.complete = false;
     }
 
@@ -24,13 +28,13 @@ public class Order {
      * Copy Constructor
      * @param id Value to copy
      * @param barista Value to copy
-     * @param itemToMake Value to copy
+     * @param itemsToMake Value to copy
      * @param complete Value to copy
      */
-    public Order(int id, Employee barista, Item itemToMake, boolean complete) {
+    public Order(int id, Employee barista, ArrayList<Item> itemsToMake, boolean complete) {
         this.id = id;
         this.barista = barista;
-        this.itemToMake = itemToMake;
+        this.itemsToMake = itemsToMake;
         this.complete = complete;
     }
 
@@ -70,16 +74,16 @@ public class Order {
      * Getter for itemToMake
      * @return itemToMake
      */
-    public Item getItemToMake() {
-        return itemToMake;
+    public ArrayList<Item> getItemsToMake() {
+        return itemsToMake;
     }
 
     /**
      * Setter for itemToMake
-     * @param itemToMake value to set
+     * @param itemsToMake value to set
      */
-    public void setItemToMake(Item itemToMake) {
-        this.itemToMake = itemToMake;
+    public void setItemsToMake(ArrayList<Item> itemsToMake) {
+        this.itemsToMake = itemsToMake;
     }
 
     /**
@@ -106,14 +110,14 @@ public class Order {
         if (id != order.id) return false;
         if (complete != order.complete) return false;
         if (!barista.equals(order.barista)) return false;
-        return itemToMake.equals(order.itemToMake);
+        return itemsToMake.equals(order.itemsToMake);
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + barista.hashCode();
-        result = 31 * result + itemToMake.hashCode();
+        result = 31 * result + itemsToMake.hashCode();
         result = 31 * result + (complete ? 1 : 0);
         return result;
     }
@@ -123,7 +127,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", emp=" + barista.getFname() +
-                ", itemToMake=" + itemToMake.getName() +
+                ", itemToMake=" + itemsToMake.toString() +
                 ", complete=" + complete +
                 '}';
     }

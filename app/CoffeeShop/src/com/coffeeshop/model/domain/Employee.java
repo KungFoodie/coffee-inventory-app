@@ -1,11 +1,13 @@
 package com.coffeeshop.model.domain;
 
+import java.io.Serializable;
+
 /**
  * Class contains employee information in system.
  * @author William Sung
  */
-public class Employee {
-
+public class Employee implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String fname;
     private String lname;

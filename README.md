@@ -11,15 +11,21 @@ DB Pass: coffeeshop123
 ```
 ### Week 2
 Running Code
-![running code](screenshots/Week2RunningCode.png "Running code")
+![running code](docs/screenshots/Week2RunningCode.png "Running code")
 Domain Coffee Test
-![coffee test](screenshots/CoffeeTestPass.png "Coffee Test")
+![coffee test](docs/screenshots/CoffeeTestPass.png "Coffee Test")
 
 
 ## Week 3
 Running Code
-![running code week 3](screenshots/Week3RunningCode.png "Week 3 Running Code")
+![running code week 3](docs/screenshots/Week3RunningCode.png "Week 3 Running Code")
 Inventory Service Test
-![inventory test](screenshots/InventoryTestPassed.png "Inventory Test Passed") 
+![inventory test](docs/screenshots/InventoryTestPassed.png "Inventory Test Passed") 
 Ordering Service Test
-![ordering test](screenshots/OrderingTestPassed.png "Ordering Service Test Passed")
+![ordering test](docs/screenshots/OrderingTestPassed.png "Ordering Service Test Passed")
+
+## Week 4
+Driver Code Testing all exceptions
+![running code week 4](docs/screenshots/CatchExceptionsTest.png "driver exceptions test")
+Service Factory Test all get services
+![service factory test](docs/screenshots/ServiceFactoryTest.png "all services tested")

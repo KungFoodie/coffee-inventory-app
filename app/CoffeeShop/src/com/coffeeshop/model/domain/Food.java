@@ -1,10 +1,13 @@
 package com.coffeeshop.model.domain;
+
+import java.io.Serializable;
+
 /**
  * Description: Food class extended from item.
  * @author William Sung
  */
-public class Food extends Item {
-
+public class Food extends Item implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * Default Constructor
      */

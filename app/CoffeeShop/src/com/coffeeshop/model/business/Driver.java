@@ -1,60 +1,54 @@
 package com.coffeeshop.model.business;
 
-import com.coffeeshop.model.domain.*;
+import com.coffeeshop.model.business.exception.ServiceLoadException;
+import com.coffeeshop.model.services.exception.InventoryException;
+import com.coffeeshop.model.services.exception.OrderException;
 import com.coffeeshop.model.services.factory.ServiceFactory;
 import com.coffeeshop.model.services.inventoryservice.IInventoryService;
+import com.coffeeshop.model.services.loginservice.ILoginService;
 import com.coffeeshop.model.services.orderservice.IOrderService;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Driver {
 
-    public static void main(String[] args) {
-        System.out.println("Creating new location...");
-        Store one = new Store(1, "Shop1", 1, "First Street", "city one", 11111, "111-111-1111");
+    public static void main(String[] args) throws InventoryException, OrderException, ServiceLoadException {
 
-        System.out.println("Creating new coffee item...");
-        Coffee c = new Coffee(1, "Java", 1, 1, "2022-10-21", "3A");
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        ILoginService loginService;
+        System.out.println("Testing ServiceLoadException...");
 
-        System.out.println("Making services");
-        ServiceFactory factory = new ServiceFactory();
-        IInventoryService inventory = factory.getInventoryService();
-        IOrderService ordering = factory.getOrderService();
+        try {
+            loginService = (ILoginService) serviceFactory.getService("bob");
+            System.out.println("testGetLoginService PASSED");
+        } catch (ServiceLoadException e) {
+            System.out.println("ServiceLoadException Caught");
+        }
 
-        System.out.println("Adding item and store...");
-        inventory.add(c, Item.class);
-        inventory.add(one, Store.class);
+        System.out.println("Testing InventoryServiceException...");
+        IInventoryService inventoryService;
+        try {
+            inventoryService = (IInventoryService) serviceFactory.getService(IInventoryService.NAME);
+            try {
+                inventoryService.add(null, null);
+            } catch (InventoryException e) {
+                System.out.println("InventoryServiceException Caught");
+            }
+        } catch (ServiceLoadException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("Making a new order");
-        Map<Integer, Order> orders = new HashMap<>();
+        System.out.println("Testing OrderServiceException...");
+        IOrderService orderService;
+        try {
+            orderService = (IOrderService) serviceFactory.getService(IOrderService.NAME);
+            try {
+                orderService.createOrder(null, -1, null, null);
+            } catch (OrderException e) {
+                System.out.println("OrderServiceException Caught");
+            }
+        } catch (ServiceLoadException e) {
+            e.printStackTrace();
+        }
 
-        Employee jack = new Employee(1, "Jack", "Robinson", "Barista", "uname1", "passwd1");
-
-        ordering.createOrder(orders, 1, jack,
-                (Item) inventory.getAll(Item.class).get(0));
-
-        System.out.println("New order made:");
-        System.out.println(ordering.getOrder(orders, 1));
-
-        System.out.println("Updating order 1:");
-        Order updatedOrder = orders.get(1);
-        updatedOrder.setComplete(true);
-        ordering.updateOrder(orders, updatedOrder);
-        System.out.println(ordering.getOrder(orders, 1));
-
-        System.out.println("Deleting Order 1");
-        ordering.deleteOrder(orders,orders.get(1));
-
-        ArrayList<Item> allItems = inventory.getAll(Item.class);
-        ArrayList<Store> allStores = inventory.getAll(Store.class);
-
-        for (Item i: allItems)
-            inventory.delete(i, Item.class);
-
-        for (Store s: allStores)
-            inventory.delete(s, Store.class);
     }
 
 }

@@ -2,6 +2,7 @@ package com.coffeeshop.model.services.inventoryservice;
 
 import com.coffeeshop.model.domain.*;
 import com.coffeeshop.model.services.data.*;
+import com.coffeeshop.model.services.exception.InventoryException;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
      * @return list of objects from table
      */
     @Override
-    public ArrayList<T> getAll(Class<T> type) {
+    public ArrayList<T> getAll(Class<T> type) throws InventoryException {
         Dao data = null;
         if (type == Item.class)
             data = new ItemDao();
@@ -26,7 +27,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
             data = new StoreDao();
 
         if (data == null)
-            return null;
+            throw new InventoryException("Type must be Store or Item Class");
 
         return data.getAll();
     }
@@ -38,7 +39,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
      * @return
      */
     @Override
-    public Boolean add(T item, Class<T> type) {
+    public Boolean add(T item, Class<T> type) throws InventoryException {
         Dao data = null;
         if (type == Item.class)
             data = new ItemDao();
@@ -47,7 +48,11 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
             data = new StoreDao();
 
         if (data == null)
-            return false;
+            throw new InventoryException("Type must be Store or Item Class");
+
+        if (item == null)
+            throw new InventoryException("Item cannot be null");
+
         return data.add(item);
     }
 
@@ -58,7 +63,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
      * @return true on success, false otherwise
      */
     @Override
-    public Boolean update(T item, Class<T> type) {
+    public Boolean update(T item, Class<T> type) throws InventoryException {
         Dao data = null;
         if (type == Item.class)
             data = new ItemDao();
@@ -67,7 +72,11 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
             data = new StoreDao();
 
         if (data == null)
-            return false;
+            throw new InventoryException("Type must be Store or Item Class");
+
+        if (item == null)
+            throw new InventoryException("Item cannot be null");
+
         return data.update(item);
     }
 
@@ -78,7 +87,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
      * @return true on success, false otherwise
      */
     @Override
-    public Boolean delete(T item, Class<T> type) {
+    public Boolean delete(T item, Class<T> type) throws InventoryException {
         Dao data = null;
         if (type == Item.class)
             data = new ItemDao();
@@ -87,7 +96,11 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
             data = new StoreDao();
 
         if (data == null)
-            return false;
+            throw new InventoryException("Type must be Store or Item Class");
+
+        if (item == null)
+            throw new InventoryException("Item cannot be null");
+
         return data.delete(item);
     }
 }

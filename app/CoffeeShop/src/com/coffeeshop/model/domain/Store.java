@@ -1,11 +1,13 @@
 package com.coffeeshop.model.domain;
 
+import java.io.Serializable;
+
 /**
  * Class contains store information
  * @author William Sung
  */
-public class Store {
-
+public class Store implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int locationID;
     private String name;
     private int streetNo;

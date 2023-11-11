@@ -3,6 +3,9 @@ package com.coffeeshop.model.services.orderservice;
 import com.coffeeshop.model.domain.Employee;
 import com.coffeeshop.model.domain.Item;
 import com.coffeeshop.model.domain.Order;
+import com.coffeeshop.model.services.exception.OrderException;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -19,7 +22,19 @@ public class OrderServiceImpl implements IOrderService {
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean createOrder(Map<Integer , Order> orders, int id, Employee emp, Item item) {
+    public Boolean createOrder(Map<Integer , Order> orders, int id, Employee emp, ArrayList<Item> item) throws OrderException {
+        if (orders == null)
+            throw new OrderException("Orders cannot be null");
+
+        if (id <= 0)
+            throw new OrderException("ID must be greater than 0");
+
+        if (emp == null)
+            throw new OrderException("Employee cannot be null");
+
+        if (item == null)
+            throw new OrderException("Item cannot be null");
+
         Order newOrder = new Order(id, emp, item, false);
         orders.put(id, newOrder);
         return true;
@@ -33,7 +48,12 @@ public class OrderServiceImpl implements IOrderService {
      * @return specific order, null if not found
      */
     @Override
-    public Order getOrder(Map<Integer , Order> orders, int id) {
+    public Order getOrder(Map<Integer , Order> orders, int id) throws OrderException {
+        if (orders == null)
+            throw new OrderException("Orders cannot be null");
+
+        if (id <= 0)
+            throw new OrderException("ID must be greater than 0");
 
         return orders.get(id);
     }
@@ -46,7 +66,12 @@ public class OrderServiceImpl implements IOrderService {
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean updateOrder(Map<Integer , Order> orders, Order order) {
+    public Boolean updateOrder(Map<Integer , Order> orders, Order order) throws OrderException {
+        if (orders == null)
+            throw new OrderException("Orders cannot be null");
+
+        if (order == null)
+            throw new OrderException("Order cannot be null");
 
         Order orderToUpdate = orders.get(order.getId());
         if (orderToUpdate == null)
@@ -64,7 +89,13 @@ public class OrderServiceImpl implements IOrderService {
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean deleteOrder(Map<Integer , Order> orders, Order order) {
+    public Boolean deleteOrder(Map<Integer , Order> orders, Order order) throws OrderException {
+        if (orders == null)
+            throw new OrderException("Orders cannot be null");
+
+        if (order == null)
+            throw new OrderException("Order cannot be null");
+
         orders.remove(order.getId());
         return true;
     }

@@ -1,15 +1,19 @@
 package com.coffeeshop.model.domain;
 
+import java.io.Serializable;
+
 /**
  * Composite object that holds the inventory information
  * @author William Sung
  */
-public class Composite {
-
+public class Composite implements Serializable {
+    private static final long serialVersionUID = 1L;
     /** holds the items in inventory */
     private Coffee beans;
     private Food foods;
     private Syrup syrups;
+    private Employee staff;
+    private Order order;
 
     public Composite() {}
 
@@ -55,17 +59,30 @@ public class Composite {
         this.syrups = syrups;
     }
 
+    public Employee getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Employee staff) {
+        this.staff = staff;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
-
-        StringBuffer strBfr = new StringBuffer();
-        strBfr.append("\nInventory Info :\n");
-        strBfr.append("\n\nAvailable Coffee Beans :\n");
-        strBfr.append(beans);
-        strBfr.append("\n\nAvailable Food Items :\n");
-        strBfr.append(foods);
-        strBfr.append("\n\nAvailable Syrups :\n");
-        strBfr.append(syrups);
-        return strBfr.toString();
+        return "Composite{" +
+                "beans=" + beans +
+                ", foods=" + foods +
+                ", syrups=" + syrups +
+                ", staff=" + staff +
+                ", order=" + order +
+                '}';
     }
 }

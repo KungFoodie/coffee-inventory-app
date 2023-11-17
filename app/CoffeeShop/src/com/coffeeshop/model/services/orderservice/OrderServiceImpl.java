@@ -1,5 +1,6 @@
 package com.coffeeshop.model.services.orderservice;
 
+import com.coffeeshop.model.domain.Composite;
 import com.coffeeshop.model.domain.Employee;
 import com.coffeeshop.model.domain.Item;
 import com.coffeeshop.model.domain.Order;
@@ -15,40 +16,29 @@ import java.util.Map;
 public class OrderServiceImpl implements IOrderService {
     /**
      * Creates an order
-     * @param orders map to place new order in
-     * @param id ID for new order
-     * @param emp  Employee to assign to order
-     * @param item Item to make for order
+     * @param composite contains current state of application
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean createOrder(Map<Integer , Order> orders, int id, Employee emp, ArrayList<Item> item) throws OrderException {
+    public Boolean createOrder(Composite composite) throws OrderException {
+        Map<Integer , Order> orders = composite.getOrders();
         if (orders == null)
             throw new OrderException("Orders cannot be null");
 
-        if (id <= 0)
-            throw new OrderException("ID must be greater than 0");
-
-        if (emp == null)
-            throw new OrderException("Employee cannot be null");
-
-        if (item == null)
-            throw new OrderException("Item cannot be null");
-
-        Order newOrder = new Order(id, emp, item, false);
-        orders.put(id, newOrder);
+        Order newOrder = composite.getOrder();
+        orders.put(newOrder.getId(), newOrder);
         return true;
     }
 
     /**
      * Gets an order from a list of orders.
-     *
-     * @param orders list of orders
-     * @param id     order to retrieve by id
+     * @param composite contains current state of application
      * @return specific order, null if not found
      */
     @Override
-    public Order getOrder(Map<Integer , Order> orders, int id) throws OrderException {
+    public Order getOrder(Composite composite) throws OrderException {
+        int id = composite.getId();
+        Map<Integer , Order> orders = composite.getOrders();
         if (orders == null)
             throw new OrderException("Orders cannot be null");
 
@@ -60,13 +50,13 @@ public class OrderServiceImpl implements IOrderService {
 
     /**
      * Updates an order in a list of order
-     *
-     * @param orders list of orders
-     * @param order  order to update in list
+     * @param composite contains current state of application
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean updateOrder(Map<Integer , Order> orders, Order order) throws OrderException {
+    public Boolean updateOrder(Composite composite) throws OrderException {
+        Map<Integer , Order> orders = composite.getOrders();
+        Order order = composite.getOrder();
         if (orders == null)
             throw new OrderException("Orders cannot be null");
 
@@ -83,13 +73,13 @@ public class OrderServiceImpl implements IOrderService {
 
     /**
      * Deletes an order from a list of orders
-     *
-     * @param orders list of orders
-     * @param order  order to delete
+     * @param composite contains current state of application
      * @return true if success, otherwise false
      */
     @Override
-    public Boolean deleteOrder(Map<Integer , Order> orders, Order order) throws OrderException {
+    public Boolean deleteOrder(Composite composite) throws OrderException {
+        Map<Integer , Order> orders = composite.getOrders();
+        Order order = composite.getOrder();
         if (orders == null)
             throw new OrderException("Orders cannot be null");
 

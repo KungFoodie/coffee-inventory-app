@@ -29,3 +29,8 @@ Driver Code Testing all exceptions
 ![running code week 4](docs/screenshots/CatchExceptionsTest.png "driver exceptions test")
 Service Factory Test all get services
 ![service factory test](docs/screenshots/ServiceFactoryTest.png "all services tested")
+
+## Week 5
+Driver Code All Failures and Success caught from manager
+![running code week 5](docs/screenshots/AllManagerServiceTestFailsAndPass.png "week 5 running code")
+![manager test](docs/screenshots/ManagerTestPass.png "manager test cases")

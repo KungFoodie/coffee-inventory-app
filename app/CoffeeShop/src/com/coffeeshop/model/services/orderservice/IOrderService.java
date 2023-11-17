@@ -15,35 +15,29 @@ public interface IOrderService extends IService {
     public final String NAME = "IOrderService";
     /**
      * Creates an order
-     * @param orders map to place new order in
-     * @param id ID number to assign to order
-     * @param emp Employee to assign to order
-     * @param item Item to make for order
+     * @param composite contains current state of application
      * @return true if successful, otherwise false
      */
-    Boolean createOrder(Map<Integer , Order> orders, int id, Employee emp, ArrayList<Item> item) throws OrderException;
+    Boolean createOrder(Composite composite) throws OrderException;
 
     /**
      * Gets an order from a list of orders.
-     * @param orders list of orders
-     * @param id order to retrieve by id
+     * @param composite contains current state of application
      * @return specific order
      */
-    Order getOrder(Map<Integer , Order> orders, int id) throws OrderException;
+    Order getOrder(Composite composite) throws OrderException;
 
     /**
      * Updates an order in a list of order
-     * @param orders list of orders
-     * @param order order to update in list
+     * @param composite contains current state of application
      * @return true if success, otherwise false
      */
-    Boolean updateOrder(Map<Integer , Order> orders, Order order) throws OrderException;
+    Boolean updateOrder(Composite composite) throws OrderException;
 
     /**
      * Deletes an order from a list of orders
-     * @param orders list of orders
-     * @param order order to delete
+     * @param composite contains current state of application
      * @return true if success, otherwise false
      */
-    Boolean deleteOrder(Map<Integer , Order> orders, Order order) throws OrderException;
+    Boolean deleteOrder(Composite composite) throws OrderException;
 }

@@ -1,6 +1,8 @@
 package com.coffeeshop.model.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Composite object that holds the inventory information
@@ -14,6 +16,12 @@ public class Composite implements Serializable {
     private Syrup syrups;
     private Employee staff;
     private Order order;
+    private Store store;
+    private Item item;
+    private int id;
+    private ArrayList<Item> items;
+    private ArrayList<Store> stores;
+    private Map<Integer , Order> orders;
 
     public Composite() {}
 
@@ -73,6 +81,54 @@ public class Composite implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
+    public ArrayList<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(ArrayList<Store> stores) {
+        this.stores = stores;
+    }
+
+    public Map<Integer, Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Map<Integer, Order> orders) {
+        this.orders = orders;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

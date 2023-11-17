@@ -2,12 +2,6 @@ package com.coffeeshop.model.services.factory;
 
 import com.coffeeshop.model.business.exception.ServiceLoadException;
 import com.coffeeshop.model.services.IService;
-import com.coffeeshop.model.services.inventoryservice.IInventoryService;
-import com.coffeeshop.model.services.inventoryservice.InventoryServiceImpl;
-import com.coffeeshop.model.services.loginservice.ILoginService;
-import com.coffeeshop.model.services.loginservice.LoginServiceImpl;
-import com.coffeeshop.model.services.orderservice.IOrderService;
-import com.coffeeshop.model.services.orderservice.OrderServiceImpl;
 
 public class ServiceFactory {
 

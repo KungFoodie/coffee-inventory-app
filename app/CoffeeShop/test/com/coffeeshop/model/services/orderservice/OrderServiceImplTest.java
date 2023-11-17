@@ -1,9 +1,6 @@
 package com.coffeeshop.model.services.orderservice;
 
-import com.coffeeshop.model.domain.Coffee;
-import com.coffeeshop.model.domain.Employee;
-import com.coffeeshop.model.domain.Item;
-import com.coffeeshop.model.domain.Order;
+import com.coffeeshop.model.domain.*;
 import com.coffeeshop.model.services.exception.OrderException;
 import org.junit.jupiter.api.Test;
 
@@ -21,13 +18,18 @@ class OrderServiceImplTest {
 
     @Test
     void createOrder() throws OrderException {
+
         IOrderService ordering = new OrderServiceImpl();
         Employee jack = new Employee(1, "Jack", "Robinson", "Barista", "uname1", "passwd1");
         Coffee c = new Coffee(1, "Java", 1, 1, "2022-10-21", "3A");
         ArrayList<Item> items = new ArrayList<>();
         items.add(c);
         Map<Integer, Order> orders = new HashMap<>();
-        ordering.createOrder(orders, 1, jack, items);
+        Composite composite = new Composite();
+        composite.setOrders(orders);
+        Order newOrder = new Order(1, jack, items, false);
+        composite.setOrder(newOrder);
+        ordering.createOrder(composite);
 
     }
 
@@ -39,9 +41,13 @@ class OrderServiceImplTest {
         ArrayList<Item> items = new ArrayList<>();
         items.add(c);
         Map<Integer, Order> orders = new HashMap<>();
-        ordering.createOrder(orders, 1, jack, items);
-
-        ordering.getOrder(orders, 1);
+        Composite composite = new Composite();
+        composite.setOrders(orders);
+        Order newOrder = new Order(1, jack, items, false);
+        composite.setOrder(newOrder);
+        ordering.createOrder(composite);
+        composite.setId(1);
+        ordering.getOrder(composite);
     }
 
     @Test
@@ -52,10 +58,15 @@ class OrderServiceImplTest {
         ArrayList<Item> items = new ArrayList<>();
         items.add(c);
         Map<Integer, Order> orders = new HashMap<>();
-        ordering.createOrder(orders, 1, jack, items);
-        Order updatedOrder = ordering.getOrder(orders, 1);
+        Composite composite = new Composite();
+        composite.setOrders(orders);
+        Order newOrder = new Order(1, jack, items, false);
+        composite.setOrder(newOrder);
+        ordering.createOrder(composite);
+        composite.setId(1);
+        Order updatedOrder = ordering.getOrder(composite);
         updatedOrder.setComplete(true);
-        ordering.updateOrder(orders, updatedOrder);
+        ordering.updateOrder(composite);
     }
 
     @Test
@@ -66,7 +77,12 @@ class OrderServiceImplTest {
         ArrayList<Item> items = new ArrayList<>();
         items.add(c);
         Map<Integer, Order> orders = new HashMap<>();
-        ordering.createOrder(orders, 1, jack, items);
-        ordering.deleteOrder(orders, ordering.getOrder(orders,1));
+        Composite composite = new Composite();
+        composite.setOrders(orders);
+        Order newOrder = new Order(1, jack, items, false);
+        composite.setOrder(newOrder);
+        composite.setId(1);
+        ordering.createOrder(composite);
+        ordering.deleteOrder(composite);
     }
 }

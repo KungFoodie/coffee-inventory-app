@@ -26,13 +26,15 @@ class CoffeeShopManagerTest {
         Store one = new Store(1, "Shop1", 1, "First Street", "city one", 11111, "111-111-1111");
         Coffee c = new Coffee(1, "Java", 1, 1, "2022-10-21", "3A");
         ArrayList<Item> items = new ArrayList<>();
+        Map<Integer, Item> itemMap = new HashMap<>();
         items.add(c);
+        itemMap.put(c.getId(), c);
         Map<Integer, Order> orders = new HashMap<>();
         Order newOrder = new Order(1, barista, items, false);
 
         composite.setOrder(newOrder);
         composite.setStaff(barista);
-        composite.setItems(items);
+        composite.setItems(itemMap);
         composite.setOrders(orders);
         composite.setId(1);
         composite.setItem(c);

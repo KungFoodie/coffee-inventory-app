@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ItemDao implements Dao {
 
-    private ArrayList<Item> items;
+    private Map<Integer, Item> items;
     private Connection connection;
     private Statement statement;
     private ResultSet result;
@@ -15,7 +15,7 @@ public class ItemDao implements Dao {
      * Default Constructor. Initializes the connection to the database.
      */
     public ItemDao() {
-        this.items = new ArrayList<Item>();
+        this.items = new HashMap<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(
@@ -34,7 +34,7 @@ public class ItemDao implements Dao {
      * @return list of Items, null on error
      */
     @Override
-    public ArrayList<Item> getAll() {
+    public Map<Integer, Item> getAll() {
 
         try {
             this.statement = connection.createStatement();
@@ -53,7 +53,7 @@ public class ItemDao implements Dao {
                                 result.getInt(5),
                                 result.getString(6),
                                 result.getString(7));
-                        items.add(f);
+                        items.put(f.getId(), f);
                         break;
                     case "coffee":
                         Coffee c = new Coffee(result.getInt(1),
@@ -62,7 +62,7 @@ public class ItemDao implements Dao {
                                 result.getInt(5),
                                 result.getString(6),
                                 result.getString(7));
-                        items.add(c);
+                        items.put(c.getId(), c);
                         break;
                     case "syrup":
                         Syrup s = new Syrup(result.getInt(1),
@@ -71,10 +71,11 @@ public class ItemDao implements Dao {
                                 result.getInt(5),
                                 result.getString(6),
                                 result.getString(7));
-                        items.add(s);
+                        items.put(s.getId(), s);
                         break;
                 }
             }
+
             return items;
         } catch (SQLException e) {
             System.err.println(e);
@@ -90,6 +91,7 @@ public class ItemDao implements Dao {
      */
     @Override
     public Boolean add(Object item) {
+
         try {
             this.statement = connection.createStatement();
 

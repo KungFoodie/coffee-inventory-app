@@ -126,8 +126,8 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", emp=" + barista.getFname() +
-                ", itemToMake=" + itemsToMake.toString() +
+                ", barista=" + barista +
+                ", itemsToMake=" + itemsToMake +
                 ", complete=" + complete +
                 '}';
     }

@@ -7,7 +7,7 @@ import java.util.*;
  */
 public interface Dao<T> {
 
-    ArrayList<T> getAll();
+    Map<T, T> getAll();
     Boolean add(T item);
     Boolean update(T item);
     Boolean delete(T item);

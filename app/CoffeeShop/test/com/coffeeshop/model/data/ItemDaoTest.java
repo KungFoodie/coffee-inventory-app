@@ -5,6 +5,8 @@ import com.coffeeshop.model.services.data.ItemDao;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 class ItemDaoTest {
 
@@ -16,18 +18,22 @@ class ItemDaoTest {
         ItemDao app = new ItemDao();
         Coffee c = new Coffee(1, "Java", 1, 1, "2022-10-21", "3A");
 
-        ArrayList<Item> stock = new ArrayList<>();
+        Map<Integer, Item> stock;
         app.add(c);
         stock = app.getAll();
         System.out.println(stock);
+        Object[] keys = stock.keySet().toArray();
 
-        stock.get(0).setStore(1);
-        app.update(stock.get(0));
+
+        stock.get(keys[0]).setStore(1);
+        app.update(stock.get(keys[0]));
         stock = app.getAll();
         System.out.println(stock);
 
-        for (Item i: stock)
-            app.delete(i);
+        for (int i: stock.keySet()) {
+            app.delete(stock.get(i));
+        }
+
         stock = app.getAll();
         System.out.println(stock);
 

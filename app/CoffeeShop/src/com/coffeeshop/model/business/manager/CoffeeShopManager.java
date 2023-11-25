@@ -2,9 +2,7 @@ package com.coffeeshop.model.business.manager;
 
 
 import com.coffeeshop.model.business.exception.ServiceLoadException;
-import com.coffeeshop.model.domain.Composite;
-import com.coffeeshop.model.domain.Item;
-import com.coffeeshop.model.domain.Store;
+import com.coffeeshop.model.domain.*;
 import com.coffeeshop.model.services.exception.InventoryException;
 import com.coffeeshop.model.services.exception.LoginException;
 import com.coffeeshop.model.services.exception.OrderException;
@@ -72,11 +70,12 @@ public class CoffeeShopManager extends ManagerSuperType {
 		} else {
 			String[] command = commandString.split("-");
 			if (command.length == 2) {
-				if (command[1].equals("Item") || command[1].equals("Store")) {
+				if (command[1].equals("Item") || command[1].equals("Store") || command[1].equals("Employee") || command[1].equals("Order")) {
 					action = crudInventory(commandString, composite);
-				} else if (command[1].equals("Order")) {
-					action = crudOrder(commandString, composite);
 				}
+//				} else if (command[1].equals("Order")) {
+//					action = crudOrder(commandString, composite);
+//				}
 			}
 		}
 
@@ -170,7 +169,6 @@ public class CoffeeShopManager extends ManagerSuperType {
 			inventoryService = (IInventoryService) serviceFactory.getService(IInventoryService.NAME);
 			switch (commandString) {
 				case "add-Item":
-
 					updated = inventoryService.add(composite.getItem(), Item.class);
 					break;
 				case "delete-Item":
@@ -195,6 +193,32 @@ public class CoffeeShopManager extends ManagerSuperType {
 					break;
 				case "getAll-Store":
 					composite.setStores(inventoryService.getAll(Store.class));
+					updated = true;
+					break;
+				case "add-Employee":
+					updated = inventoryService.add(composite.getStaff(), Employee.class);
+					break;
+				case "delete-Employee":
+					updated = inventoryService.delete(composite.getStaff(), Employee.class);
+					break;
+				case "update-Employee":
+					updated = inventoryService.update(composite.getStaff(), Employee.class);
+					break;
+				case "getAll-Employee":
+					composite.setEmployees(inventoryService.getAll(Employee.class));
+					updated = true;
+					break;
+				case "add-Order":
+					updated = inventoryService.add(composite.getOrder(), Order.class);
+					break;
+				case "delete-Order":
+					updated = inventoryService.delete(composite.getOrder(), Order.class);
+					break;
+				case "update-Order":
+					updated = inventoryService.update(composite.getOrder(), Order.class);
+					break;
+				case "getAll-Order":
+					composite.setOrders(inventoryService.getAll(Order.class));
 					updated = true;
 					break;
 				default:

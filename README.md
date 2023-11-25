@@ -33,4 +33,11 @@ Service Factory Test all get services
 ## Week 5
 Driver Code All Failures and Success caught from manager
 ![running code week 5](docs/screenshots/AllManagerServiceTestFailsAndPass.png "week 5 running code")
+Manager Test cases
 ![manager test](docs/screenshots/ManagerTestPass.png "manager test cases")
+
+## Week 6
+Week 6 Database Integration Running Code
+![running code week 6](docs/screenshots/Week6RunningCode.png "Database integration")
+Database test
+![database test](docs/screenshots/databasetest.png "item database test")

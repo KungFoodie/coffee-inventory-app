@@ -19,9 +19,10 @@ public class Composite implements Serializable {
     private Store store;
     private Item item;
     private int id;
-    private ArrayList<Item> items;
-    private ArrayList<Store> stores;
+    private Map<Integer, Item> items;
+    private Map<Integer, Store> stores;
     private Map<Integer , Order> orders;
+    private Map<Integer, Employee> employees;
 
     public Composite() {}
 
@@ -99,28 +100,36 @@ public class Composite implements Serializable {
         this.item = item;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    public ArrayList<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(ArrayList<Store> stores) {
-        this.stores = stores;
-    }
-
     public Map<Integer, Order> getOrders() {
         return orders;
     }
 
     public void setOrders(Map<Integer, Order> orders) {
         this.orders = orders;
+    }
+
+    public Map<Integer, Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Map<Integer, Item> items) {
+        this.items = items;
+    }
+
+    public Map<Integer, Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(Map<Integer, Store> stores) {
+        this.stores = stores;
+    }
+
+    public Map<Integer, Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Map<Integer, Employee> employees) {
+        this.employees = employees;
     }
 
     public int getId() {

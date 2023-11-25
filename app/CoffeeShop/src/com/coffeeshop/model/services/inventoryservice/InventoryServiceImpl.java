@@ -5,6 +5,7 @@ import com.coffeeshop.model.services.data.*;
 import com.coffeeshop.model.services.exception.InventoryException;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Class implements the inventory service interface.
@@ -18,7 +19,7 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
      * @return list of objects from table
      */
     @Override
-    public ArrayList<T> getAll(Class<T> type) throws InventoryException {
+    public Map<T, T> getAll(Class<T> type) throws InventoryException {
         Dao data = null;
         if (type == Item.class)
             data = new ItemDao();
@@ -26,8 +27,14 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
         if (type == Store.class)
             data = new StoreDao();
 
+        if (type == Employee.class)
+            data = new EmployeeDao();
+
+        if (type == Order.class)
+            data = new OrderDao();
+
         if (data == null)
-            throw new InventoryException("Type must be Store or Item Class");
+            throw new InventoryException("Invalid Type");
 
         return data.getAll();
     }
@@ -47,8 +54,14 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
         if (type == Store.class)
             data = new StoreDao();
 
+        if (type == Employee.class)
+            data = new EmployeeDao();
+
+        if (type == Order.class)
+            data = new OrderDao();
+
         if (data == null)
-            throw new InventoryException("Type must be Store or Item Class");
+            throw new InventoryException("Invalid Type");
 
         if (item == null)
             throw new InventoryException("Item cannot be null");
@@ -71,8 +84,14 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
         if (type == Store.class)
             data = new StoreDao();
 
+        if (type == Employee.class)
+            data = new EmployeeDao();
+
+        if (type == Order.class)
+            data = new OrderDao();
+
         if (data == null)
-            throw new InventoryException("Type must be Store or Item Class");
+            throw new InventoryException("Invalid Type");
 
         if (item == null)
             throw new InventoryException("Item cannot be null");
@@ -95,8 +114,14 @@ public class InventoryServiceImpl<T> implements IInventoryService<T> {
         if (type == Store.class)
             data = new StoreDao();
 
+        if (type == Employee.class)
+            data = new EmployeeDao();
+
+        if (type == Order.class)
+            data = new OrderDao();
+
         if (data == null)
-            throw new InventoryException("Type must be Store or Item Class");
+            throw new InventoryException("Invalid Type");
 
         if (item == null)
             throw new InventoryException("Item cannot be null");

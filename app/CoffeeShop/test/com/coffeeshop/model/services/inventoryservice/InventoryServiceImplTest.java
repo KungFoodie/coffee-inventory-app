@@ -7,6 +7,8 @@ import com.coffeeshop.model.services.factory.ServiceFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,14 +25,16 @@ class InventoryServiceImplTest {
         IInventoryService inventory = new InventoryServiceImpl();
 
         try {
-            ArrayList<Item> allItems = inventory.getAll(null);
+            Map<Integer, Item>allItems = inventory.getAll(null);
         } catch (InventoryException e) {
             System.out.println("Inventory Exception Test Caught");
         }
 
         try {
-            ArrayList<Item> allItems = inventory.getAll(Item.class);
-            ArrayList<Store> allStores = inventory.getAll(Store.class);
+            Map<Integer, Item> allItems = inventory.getAll(Item.class);
+            Map<Integer, Store> allStores = inventory.getAll(Store.class);
+            Map<Integer, Employee> allEmployees = inventory.getAll(Employee.class);
+            Map<Integer, Order> allOrders = inventory.getAll(Order.class);
         } catch (InventoryException e) {
             System.out.println("Failed Test");
         }
@@ -42,6 +46,7 @@ class InventoryServiceImplTest {
 
         Store one = new Store(1, "Shop1", 1, "First Street", "city one", 11111, "111-111-1111");
         Coffee c = new Coffee(1, "Java", 1, 1, "2022-10-21", "3A");
+
 
         try {
             assertTrue(inventory.add(one, Store.class));
@@ -63,11 +68,12 @@ class InventoryServiceImplTest {
         inventory.add(one, Store.class);
         inventory.add(c, Item.class);
 
-        ArrayList<Item> allItems = inventory.getAll(Item.class);
-        ArrayList<Store> allStores = inventory.getAll(Store.class);
+        Map<Integer, Item> allItems = inventory.getAll(Item.class);
+        Map<Integer, Store> allStores = inventory.getAll(Store.class);
 
-        c = (Coffee) allItems.get(0);
-        one = allStores.get(0);
+        Object[] keys = allItems.keySet().toArray();
+        c = (Coffee) allItems.get(keys[0]);
+        one = allStores.get(one.getLocationID());
 
         c.setName("Hawaiian");
         one.setName("Shop2");
@@ -82,14 +88,14 @@ class InventoryServiceImplTest {
     void delete() throws InventoryException {
         IInventoryService inventory = new InventoryServiceImpl();
 
-        ArrayList<Item> allItems = inventory.getAll(Item.class);
-        ArrayList<Store> allStores = inventory.getAll(Store.class);
+        Map<Integer, Item> allItems = inventory.getAll(Item.class);
+        Map<Integer, Store> allStores = inventory.getAll(Store.class);
 
-        for (Item i: allItems)
-            inventory.delete(i, Item.class);
+        for (int i: allItems.keySet())
+            inventory.delete(allItems.get(i), Item.class);
 
-        for (Store s: allStores)
-            inventory.delete(s, Store.class);
+        for (int s: allStores.keySet())
+            inventory.delete(allStores.get(s), Store.class);
 
     }
 }

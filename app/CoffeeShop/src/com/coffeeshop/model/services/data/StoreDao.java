@@ -4,11 +4,13 @@ import com.coffeeshop.model.domain.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StoreDao implements Dao {
 
 
-    private ArrayList<Store> locations;
+    private Map<Integer, Store> locations;
     private Connection connection;
     private Statement statement;
     private ResultSet result;
@@ -17,7 +19,7 @@ public class StoreDao implements Dao {
      * Default Constructor. Initializes the connection to the database.
      */
     public StoreDao() {
-        this.locations = new ArrayList<Store>();
+        this.locations = new HashMap<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(
@@ -36,7 +38,7 @@ public class StoreDao implements Dao {
      * @return list of locations, null on error
      */
     @Override
-    public ArrayList<Store> getAll() {
+    public Map<Integer, Store> getAll() {
 
         try {
             this.statement = connection.createStatement();
@@ -50,7 +52,7 @@ public class StoreDao implements Dao {
                 Store l = new Store(result.getInt(1), result.getString(2),
                         result.getInt(3), result.getString(4), result.getString(5),
                         result.getInt(6), result.getString(7));
-                locations.add(l);
+                locations.put(l.getLocationID(), l);
             }
 
             return locations;

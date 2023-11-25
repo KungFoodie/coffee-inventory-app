@@ -5,6 +5,7 @@ import com.coffeeshop.model.services.IService;
 import com.coffeeshop.model.services.exception.InventoryException;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Interface for the inventory service
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 public interface IInventoryService<T> extends IService {
     public final String NAME = "IInventoryService";
-    ArrayList<T> getAll(Class<T> type) throws InventoryException;
+    Map<T, T> getAll(Class<T> type) throws InventoryException;
     Boolean add(T item, Class<T> type) throws InventoryException;
     Boolean update(T item, Class<T> type) throws InventoryException;
     Boolean delete(T item, Class<T> type) throws InventoryException;

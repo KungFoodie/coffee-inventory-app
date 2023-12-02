@@ -41,3 +41,8 @@ Week 6 Database Integration Running Code
 ![running code week 6](docs/screenshots/Week6RunningCode.png "Database integration")
 Database test
 ![database test](docs/screenshots/databasetest.png "item database test")
+
+## Week 7
+CLI interface built
+![CLI interface](docs/screenshots/CLI_interfacebuilt.png "command line interface demo")
+

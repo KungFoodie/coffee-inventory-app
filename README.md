@@ -6,15 +6,15 @@ See Design Document located in docs folder for further information and updates a
 
 ### Defaults
 ```
-DB User: coffeeshop@localhost\
+DB User: coffeeshop@localhost
 DB Pass: coffeeshop123
 ```
+
 ### Week 2
 Running Code
 ![running code](docs/screenshots/Week2RunningCode.png "Running code")
 Domain Coffee Test
 ![coffee test](docs/screenshots/CoffeeTestPass.png "Coffee Test")
-
 
 ## Week 3
 Running Code

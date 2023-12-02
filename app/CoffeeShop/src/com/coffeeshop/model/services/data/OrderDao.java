@@ -92,7 +92,7 @@ public class OrderDao implements Dao {
             }
             int completeInt = complete ? 1:0;
 
-            String params = new StringBuilder().append("(").append(id).append(", '").
+            String params = new StringBuilder().append("(null, '").
                     append(employee.getId()).append("', '").
                     append(itemIDs).append("', '").
                     append(completeInt).append("');").toString();

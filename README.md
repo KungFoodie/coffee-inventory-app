@@ -46,3 +46,6 @@ Database test
 CLI interface built
 ![CLI interface](docs/screenshots/CLI_interfacebuilt.png "command line interface demo")
 
+## Week 8
+Demo video to slack
+

@@ -144,8 +144,7 @@ public class Driver {
 
                 System.out.println("Please input updated information");
                 System.out.print("Name: ");
-                input.next();
-                name = input.nextLine();
+                name = input.next();
                 System.out.print("Quantity: ");
                 quantity = input.nextInt();
                 System.out.print("Location ID: ");
@@ -203,7 +202,7 @@ public class Driver {
         Map<Integer, Item> items = composite.getItems();
         Map<Integer, Order> orders = composite.getOrders();
         Map<Integer, Employee> employees = composite.getEmployees();
-        ArrayList<Item> itemsToMake = new ArrayList<>();
+
         Item makeItem = null;
         Employee employee = null;
         int choice = -1;
@@ -226,11 +225,13 @@ public class Driver {
             boolean complete = false;
 
             if (choice == 1) {
+                ArrayList<Item> itemsToMake = new ArrayList<>();
                 System.out.println("----Employees----");
                 int i = 1;
                 for (int key: employees.keySet()) {
                     System.out.println("ID: " + employees.get(key).getId() + " Name: " + employees.get(key).getFname());
                 }
+                employee = null;
                 while (employee == null) {
                     System.out.print("Enter Employee ID to make order: ");
                     employeeid = input.nextInt();
@@ -255,7 +256,6 @@ public class Driver {
                 Order newOrder = new Order(1, employee, itemsToMake, false);
                 composite.setOrder(newOrder);
                 completed = coffeeShopManager.performAction("add-Order", composite);
-
             }
 
             if (choice == 2) {
@@ -278,6 +278,7 @@ public class Driver {
             }
 
             if (choice == 3) {
+                ArrayList<Item> itemsToMake = new ArrayList<>();
                 coffeeShopManager.performAction("getAll-Item", composite);
                 coffeeShopManager.performAction("getAll-Order", composite);
                 coffeeShopManager.performAction("getAll-Employee", composite);
@@ -318,6 +319,7 @@ public class Driver {
                 for (int key: employees.keySet()) {
                     System.out.println("ID: " + employees.get(key).getId() + " Name: " + employees.get(key).getFname());
                 }
+                employee = null;
                 while (employee == null) {
                     System.out.print("Enter Employee ID to make order: ");
                     employeeid = input.nextInt();
@@ -345,8 +347,8 @@ public class Driver {
                 updateOrder.setItemsToMake(itemsToMake);
                 updateOrder.setComplete(completedOrder);
                 composite.setOrder(updateOrder);
-
                 completed = coffeeShopManager.performAction("update-Order", composite);
+
             }
 
             if (choice == 4 ) {
